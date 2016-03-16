@@ -1,13 +1,8 @@
 # -*- coding: cp1252 -*-
 import sqlite3,os,time,getpass
-
-
 class Menu(object):
-
     @staticmethod
     def show():
-        
-        
         while True:            
             print('Available Options:\n')
             print('1 > Count and Update Pages on Repository.')
@@ -39,13 +34,8 @@ class Menu(object):
                 info()
                 print('\n')            
             else:
-                print opt
                 print('Invalid option!!!! \n')
-                
-
         exit()
-                
-            
 
 class Begin(object):
     """
@@ -72,9 +62,8 @@ class Begin(object):
                 print ("More than one Configuration found. Choose one to be used:")
                 for i,r in enumerate(rs):
                     print(str(i+1)+' > '+str(r[1])+' | '+str(r[2]))
-                self.opt = int(raw_input('\n> '))           
-            
-            
+                self.opt = int(raw_input('\n> ')) 
+                
     def createDb(self):
         """
         This method creates a new Data Base.
@@ -90,6 +79,7 @@ class Begin(object):
         print('Creating table.....')
         self.db.close()
         self.populateDb(self.opt)
+        
     def populateDb(self,opt):
         """
         This method the new Data Base.
@@ -110,12 +100,10 @@ class Begin(object):
         self.db.commit()
         self.db.close()
         print("Data succesfully saved!")
-        print opt
         if opt == 0:
             StartCounting(opt)
         else:
             Menu.show()
-
 class DB(object):
     @staticmethod
     def connect():
@@ -156,15 +144,13 @@ class StartCounting(object):
     files will be updated in the repository.
     """
     
-
     def __init__(self,opt):        
         self.program = Begin(opt)
         self.rep = Conecta.cmisConnect(self.program.opt) 
         self.pages = 0       
         self.errors = []             
         self.opt = opt
-        print self.opt
-
+        
         while True:    
             print ("Inform ID(s):\n'0' for RETURN TO MAIN MENU:")
             self.texto = raw_input('> ')
@@ -413,7 +399,7 @@ if __name__=='__main__':
     
 """
 TODO:
- - Criar menu de instruções
+ - Criar menu de instruÃ§Ãµes
 """
 
 
